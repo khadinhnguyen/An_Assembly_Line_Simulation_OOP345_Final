@@ -1,3 +1,10 @@
+//==============================================
+// Name:           Kha Nguyen
+// Student Number: 165869199
+// Email:          knguyen93@myseneca.ca
+// Date:           Mar 17,2021
+// I confirm that I am the only author of this file and the content was created entirely by me
+//==============================================
 #include "Station.h"
 
 namespace sdds {
@@ -14,14 +21,8 @@ namespace sdds {
       size_t scanPos = 0;
       bool keepGoing = true;
       m_item_name = U.extractToken(str, scanPos, keepGoing);
-      //buf << U.extractToken(str, scanPos, keepGoing);
-      //buf >> m_serialNumber;
-      //buf << U.extractToken(str, scanPos, keepGoing);
-      //buf >> m_quantity;
       m_serialNumber = std::stoi(U.extractToken(str, scanPos, keepGoing));
       m_quantity = std::stoi(U.extractToken(str, scanPos, keepGoing));
-      //m_serialNumber = 12345;
-      //m_quantity = 6;
       if (m_widthField < U.getFieldWidth()) m_widthField = U.getFieldWidth();
       m_description = U.extractToken(str, scanPos, keepGoing);
 
@@ -53,10 +54,10 @@ namespace sdds {
    {
       os << '[' << std::setw(3) << std::setfill('0') << std::right << m_station_id << ']' << std::setfill(' ');
       os << " Item: " << std::setw(m_widthField) << std::left << m_item_name;
-      os << " [" << std::setw(6) << std::setfill('0') << m_serialNumber << "] " << std::setfill(' ');
+      os << " [" << std::setw(6) << std::right << std::setfill('0') << m_serialNumber << "]" << std::setfill(' ');
       if (full) {
-         os << "Quantity: " << std::setw(m_widthField) << std::left << m_quantity;
-         os << "Description: " << m_description;
+         os << " Quantity: " << std::setw(m_widthField) << std::left << m_quantity;
+         os << " Description: " << m_description;
          
       }
       os << std::endl;

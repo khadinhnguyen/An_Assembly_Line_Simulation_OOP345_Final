@@ -1,3 +1,10 @@
+//==============================================
+// Name:           Kha Nguyen
+// Student Number: 165869199
+// Email:          knguyen93@myseneca.ca
+// Date:           Mar 17,2021
+// I confirm that I am the only author of this file and the content was created entirely by me
+//==============================================
 #include "Utilities.h"
 
 namespace sdds {
@@ -12,7 +19,6 @@ namespace sdds {
       return m_widthField;
    }
 
-   // why need bool& more?
    std::string Utilities::extractToken(const std::string& str, size_t& next_pos, bool& more)
    {
       std::string extractedStr{};

@@ -1,3 +1,10 @@
+//==============================================
+// Name:           Kha Nguyen
+// Student Number: 165869199
+// Email:          knguyen93@myseneca.ca
+// Date:           Mar 17,2021
+// I confirm that I am the only author of this file and the content was created entirely by me
+//==============================================
 #ifndef SDDS_STATION_H_
 #define SDDS_STATION_H_
 #include <string>
@@ -12,7 +19,6 @@ namespace sdds {
       std::string m_item_name;
       std::string m_description;
       size_t m_serialNumber;
-      //size_t m_next_serial_number;
       size_t m_quantity;
       static size_t m_widthField;
       static unsigned id_generator;
