@@ -1,3 +1,10 @@
+//==============================================
+// Name:           Kha Nguyen
+// Student Number: 165869199
+// Email:          knguyen93@myseneca.ca
+// Date:           Mar 21,2021
+// I confirm that I am the only author of this file and the content was created entirely by me
+//==============================================
 #ifndef SDDS_CUSTOMERORDER_H_
 #define SDDS_CUSTOMERORDER_H_
 #include <string>

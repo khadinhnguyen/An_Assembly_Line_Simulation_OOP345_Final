@@ -1,21 +1,25 @@
+//==============================================
+// Name:           Kha Nguyen
+// Student Number: 165869199
+// Email:          knguyen93@myseneca.ca
+// Date:           Mar 21,2021
+// I confirm that I am the only author of this file and the content was created entirely by me
+//==============================================
 #include "CustomerOrder.h"
 #include "Utilities.h"
 
 namespace sdds {
    size_t CustomerOrder::m_widthField = 0u;
+
    void CustomerOrder::listResize()
    {
-      Item** temp = new Item* [m_cntItem];
+      Item** temp = new Item* [m_cntItem + 1];
       int i = 0;
       for (; i < (int)m_cntItem; i++) {
          temp[i] = m_lstItem[i];
       }
       delete[] m_lstItem;
-      m_lstItem = new Item * [m_cntItem + 1];
-      for (i = 0; i < (int)m_cntItem; i++) {
-         m_lstItem[i] = temp[i];
-      }
-      delete[] temp;
+      m_lstItem = temp;
    }
    CustomerOrder::CustomerOrder(const std::string& str){
       m_cntItem = 0;
@@ -23,18 +27,13 @@ namespace sdds {
       size_t extractPosition = 0;
       bool keepGoing = true;
       Utilities U;
-      //Utilities::setDelimiter('|');
       m_name = U.extractToken(str, extractPosition, keepGoing);
       m_product = U.extractToken(str, extractPosition, keepGoing);
-      Item* temp = new Item(U.extractToken(str, extractPosition, keepGoing));
-      m_lstItem[0] = temp;
+      m_lstItem[0] = new Item(U.extractToken(str, extractPosition, keepGoing));
       m_cntItem++;
-      temp = nullptr;
       while (keepGoing) {
-         temp = new Item(U.extractToken(str, extractPosition, keepGoing));
          listResize();
-         m_lstItem[m_cntItem] = temp;
-         temp = nullptr;
+         m_lstItem[m_cntItem] = new Item(U.extractToken(str, extractPosition, keepGoing));
          m_cntItem++;
       }
       if (m_widthField < U.getFieldWidth()) { m_widthField = U.getFieldWidth(); }
@@ -109,6 +108,7 @@ namespace sdds {
 
    CustomerOrder::CustomerOrder(CustomerOrder&& C) noexcept
    {
+      m_lstItem = nullptr;
       operator=(std::move(C));
    }
 
@@ -117,28 +117,21 @@ namespace sdds {
       throw "ERROR: Cannot make copies";
    }
 
-   //CustomerOrder& CustomerOrder::operator=(const CustomerOrder& C)
-   //{
-   //   if (this != &C) {
-   //      m_name = C.m_name;
-   //      m_product = C.m_product;
-   //      m_cntItem = C.m_cntItem;
-   //      delete[] m_lstItem;
-   //      m_lstItem = new Item * [m_cntItem];
-   //      for (int i = 0; i < (int)m_cntItem; i++) {
-   //         m_lstItem[i] = C.m_lstItem[i];
-   //      }
-   //   }
-   //   return *this;
-   //}
 
    CustomerOrder& CustomerOrder::operator=(CustomerOrder&& C) noexcept
    {
       if (this != &C) {
+
+         if (m_lstItem != nullptr) {
+            for (int i = 0; i < (int)m_cntItem; i++) {
+               delete m_lstItem[i];
+            }
+            delete[] m_lstItem;
+         }
          m_name = C.m_name;
          m_product = C.m_product;
-         m_cntItem = C.m_cntItem;
          m_lstItem = C.m_lstItem;
+         m_cntItem = C.m_cntItem;
          C.m_name = "";
          C.m_product = "";
          C.m_cntItem = 0;
