@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 		cout << endl << endl;
 
 
-		loadFromFile<CustomerOrder>(argv[3], theOrders);
+	loadFromFile<CustomerOrder>(argv[3], theOrders);
 
 		cout << "========================================" << endl;
 		cout << "=                Orders                =" << endl;
@@ -128,7 +128,7 @@ int main(int argc, char** argv)
 		theItem->display(cout, true);
 	cout << endl;
 
-	// cleanup
+	//// cleanup
 	for (auto station : theStations)
 		delete station;
 

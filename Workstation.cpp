@@ -15,23 +15,23 @@ namespace sdds {
       // this->getItemName()
       if (m_order.front().isItemFilled(Station::getItemName())) {
          if (m_pNextStation == nullptr) {
-            completed.push(m_order.front());
-            m_order.pop();
+            completed.push_back(m_order.front());
+            m_order.pop_front();
          }
          else {
-            m_pNextStation->m_order.push(m_order.front());
-            m_order.pop();
+            m_pNextStation->m_order.push_back(m_order.front());
+            m_order.pop_front();
          }
          success = true;
       }
       else {
          if (m_pNextStation == nullptr) {
-            incompleted.push(m_order.front());
-            m_order.pop();
+            incomplete.push_back(m_order.front());
+            m_order.pop_front();
          }
          else {
-            m_pNextStation->m_order.push(m_order.front());
-            m_order.pop();
+            m_pNextStation->m_order.push_back(m_order.front());
+            m_order.pop_front();
          }
       }
 
@@ -58,7 +58,7 @@ namespace sdds {
    }
    Workstation& Workstation::operator+=(CustomerOrder&& newOrder)
    {
-      m_order.push(std::move(newOrder)); // check
+      m_order.push_back(std::move(newOrder)); // check
       return *this;
    }
 }

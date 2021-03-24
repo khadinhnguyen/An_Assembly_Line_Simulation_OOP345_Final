@@ -1,17 +1,17 @@
 #ifndef SDDS_WORKSTATION_H_
 #define SDDS_WORKSTATION_H_
-#include <queue>
+#include <deque>
 #include <iostream>
 #include "CustomerOrder.h"
 #include "Station.h"
 namespace sdds {
 
-   extern std::queue<CustomerOrder> pending; // holds the orders to be placed onto the assembly line at the first station
-   extern std::queue<CustomerOrder> completed; // holds the orders that have been removed from the last station and have been completely filled
-   extern std::queue<CustomerOrder> incompleted; // holds the orders that have been removed from the last station and could not be filled completely
+   extern std::deque<CustomerOrder> pending; // holds the orders to be placed onto the assembly line at the first station
+   extern std::deque<CustomerOrder> completed; // holds the orders that have been removed from the last station and have been completely filled
+   extern std::deque<CustomerOrder> incomplete; // holds the orders that have been removed from the last station and could not be filled completely
 
    class Workstation : public Station {
-      std::queue<CustomerOrder> m_order;
+      std::deque<CustomerOrder> m_order;
       Workstation* m_pNextStation;
 
    public:
