@@ -13,9 +13,9 @@ namespace sdds {
 
    public:
       LineManager(const std::string& file, const std::vector<Workstation*>& stations);
-      //void linkStations();
-      //bool run(std::ostream& os);
-      //void display(std::ostream& os) const;
+      void linkStations();
+      bool run(std::ostream& os);
+      void display(std::ostream& os) const;
 
    };
 }
