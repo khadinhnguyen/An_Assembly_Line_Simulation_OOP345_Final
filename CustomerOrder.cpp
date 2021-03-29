@@ -69,26 +69,28 @@ namespace sdds {
 
    void CustomerOrder::fillItem(Station& station, std::ostream& os)
    {
-      bool found = false;
+      //bool found = false;
       bool filled = false;
       for (int i = 0; i < (int)m_cntItem; i++) {
          if (station.getItemName().compare(m_lstItem[i]->m_itemName) == 0) {
-            found = true;
+            //found = true;
             if (isItemFilled(m_lstItem[i]->m_itemName)) {
-               filled = true;
+               //filled = true;
+               os << "    Filled " << m_name << ", " << m_product << " [" << station.getItemName() << ']' << std::endl;
             }
             else if (!m_lstItem[i]->m_isFilled && station.getQuantity() > 0) {
                m_lstItem[i]->m_isFilled = true;
                m_lstItem[i]->m_serialNumber = station.getNextSerialNumber();
                station.updateQuantity();
-               filled = true;
+               //filled = true;
+               os << "    Filled " << m_name << ", " << m_product << " [" << station.getItemName() << ']' << std::endl;
             }
          }
       }
-      if (found) {      
-         if (filled) os << "    Filled " << m_name << ", " << m_product << " [" << station.getItemName() << ']' << std::endl;
-         else os << "    Unable to fill " << m_name << ", " << m_product << " [" << station.getItemName() << ']' << std::endl;
-      }
+      //if (!found) {      
+      //   //if (filled) os << "    Filled " << m_name << ", " << m_product << " [" << station.getItemName() << ']' << std::endl;
+      //   os << "    Unable to fill " << m_name << ", " << m_product << " [" << station.getItemName() << ']' << std::endl;
+      //}
    }
 
    void CustomerOrder::display(std::ostream& os) const
