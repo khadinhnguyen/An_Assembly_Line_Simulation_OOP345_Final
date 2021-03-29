@@ -16,15 +16,16 @@ namespace sdds {
 
    public:
       Workstation(const std::string& str) : m_pNextStation(nullptr), Station(str) {}
-      ~Workstation();
+      //~Workstation();
       void operator=(const Workstation& W) = delete;
       void operator=(Workstation&& W) = delete;
+      //bool operator==(const std::string& str);
       void fill(std::ostream& os);
       bool attemptToMoveOrder();
       void setNextStation(Workstation* station);
       const Workstation* getNextStation() const;
-      void display(std::ostream& os) const;
-      Workstation& operator+=(CustomerOrder && newOrder);
+      void display(std::ostream& os);
+      Workstation& operator+=(CustomerOrder&& newOrder);
 
    };
 }
